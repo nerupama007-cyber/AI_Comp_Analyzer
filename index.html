@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Complaint Grammar Analyzer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+        <div class="logo-area">
+            <div class="logo">ACGA</div>
+
+            <div>
+                <h1>AI Complaint Analyzer</h1>
+                <p>Formal Language & Automata Based System</p>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#analyzer">Analyzer</a>
+            <a href="#concepts">FLA Concepts</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+
+    <!-- ================= HOME ================= -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-text">
+
+                <span class="badge">FLA PROJECT</span>
+
+                <h2>
+                    AI-Powered Customer Complaint
+                    <span>Grammar Analyzer</span>
+                </h2>
+
+                <p>
+                    Analyze customer complaints using Formal Grammar,
+                    DFA, PDA, Parse Trees, SLM-style analysis and
+                    LLM-style reasoning.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#analyzer" class="primary-btn">
+                        Start Analysis
+                    </a>
+
+                    <a href="#concepts" class="secondary-btn">
+                        Explore FLA
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="mini-icon">⚙️</div>
+
+                <h3>Complaint Processing Pipeline</h3>
+
+                <div class="pipeline-mini">
+
+                    <span>Input</span>
+                    <b>→</b>
+                    <span>Grammar</span>
+                    <b>→</b>
+                    <span>DFA</span>
+                    <b>→</b>
+                    <span>PDA</span>
+                    <b>→</b>
+                    <span>AI</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ANALYZER ================= -->
+
+    <section id="analyzer" class="section">
+
+        <div class="section-heading">
+
+            <span class="section-label">ANALYZER</span>
+
+            <h2>Customer Complaint Analyzer</h2>
+
+            <p>
+                Enter a complaint and analyze it using the complete
+                FLA-based processing pipeline.
+            </p>
+
+        </div>
+
+
+        <!-- INPUT CARD -->
+
+        <div class="input-card">
+
+            <label for="complaintInput">
+                Enter Customer Complaint
+            </label>
+
+            <textarea
+                id="complaintInput"
+                placeholder="Example: I purchased a damaged product and I want a refund immediately."
+            ></textarea>
+
+
+            <div class="sample-area">
+
+                <span>Try a sample:</span>
+
+                <button
+                    class="sample-btn"
+                    onclick="loadSample(1)">
+                    Complete Complaint
+                </button>
+
+                <button
+                    class="sample-btn"
+                    onclick="loadSample(2)">
+                    Missing Request
+                </button>
+
+                <button
+                    class="sample-btn"
+                    onclick="loadSample(3)">
+                    Missing Customer
+                </button>
+
+            </div>
+
+
+            <div class="action-buttons">
+
+                <button
+                    class="analyze-btn"
+                    onclick="analyzeComplaint()">
+                    🔍 Analyze Complaint
+                </button>
+
+                <button
+                    class="clear-btn"
+                    onclick="clearAnalysis()">
+                    🗑 Clear
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RESULTS ================= -->
+
+        <div id="results" class="results-container">
+
+
+            <!-- TOKENIZATION -->
+
+            <div class="result-card">
+
+                <div class="result-title">
+                    <span class="number">01</span>
+
+                    <div>
+                        <h3>Tokenization</h3>
+                        <p>Breaking the complaint into tokens</p>
+                    </div>
+                </div>
+
+                <div id="tokenCount" class="token-count">
+                    No analysis yet
+                </div>
+
+                <div id="tokens" class="tokens-box"></div>
+
+            </div>
+
+
+            <!-- FORMAL GRAMMAR -->
+
+            <div class="result-card">
+
+                <div class="result-title">
+                    <span class="number">02</span>
+
+                    <div>
+                        <h3>Formal Grammar</h3>
+                        <p>Complaint grammar structure</p>
+                    </div>
+                </div>
+
+
+                <div class="grammar-box">
+
+                    <code>
+                        Complaint → Customer Problem Request
+                    </code>
+
+                    <code>
+                        Customer → I | We | My
+                    </code>
+
+                    <code>
+                        Problem → purchased | damaged | broken |
+                        issue | problem | not working
+                    </code>
+
+                    <code>
+                        Request → refund | replacement | help |
+                        assistance
+                    </code>
+
+                </div>
+
+
+                <div id="grammarStatus"
+                     class="status-box">
+                    Waiting for analysis...
+                </div>
+
+            </div>
+
+
+            <!-- DFA -->
+
+            <div class="result-card">
+
+                <div class="result-title">
+
+                    <span class="number">03</span>
+
+                    <div>
+                        <h3>DFA Analysis</h3>
+                        <p>Deterministic Finite Automaton</p>
+                    </div>
+
+                </div>
+
+
+                <div class="dfa-container">
+
+                    <div class="dfa-state start">
+                        q0
+                        <small>START</small>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                    <div class="dfa-state">
+                        q1
+                        <small>CUSTOMER</small>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                    <div class="dfa-state">
+                        q2
+                        <small>PROBLEM</small>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                    <div class="dfa-state">
+                        q3
+                        <small>REQUEST</small>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                    <div class="dfa-state accept">
+                        q4
+                        <small>ACCEPT</small>
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Current State</th>
+                                <th>Input / Condition</th>
+                                <th>Next State</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>q0</td>
+                                <td>Customer word</td>
+                                <td>q1</td>
+                            </tr>
+
+                            <tr>
+                                <td>q1</td>
+                                <td>Problem word</td>
+                                <td>q2</td>
+                            </tr>
+
+                            <tr>
+                                <td>q2</td>
+                                <td>Request word</td>
+                                <td>q3</td>
+                            </tr>
+
+                            <tr>
+                                <td>q3</td>
+                                <td>End of complaint</td>
+                                <td>q4</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div id="dfaStatus"
+                     class="status-box">
+                    Waiting for analysis...
+                </div>
+
+            </div>
+
+
+            <!-- GRAMMAR ERROR -->
+
+            <div class="result-card">
+
+                <div class="result-title">
+
+                    <span class="number">04</span>
+
+                    <div>
+                        <h3>Grammar Error Detection</h3>
+                        <p>Checking required grammar components</p>
+                    </div>
+
+                </div>
+
+
+                <div class="component-grid">
+
+                    <div id="customerComponent"
+                         class="component">
+                        Customer
+                        <strong>—</strong>
+                    </div>
+
+                    <div id="problemComponent"
+                         class="component">
+                        Problem
+                        <strong>—</strong>
+                    </div>
+
+                    <div id="requestComponent"
+                         class="component">
+                        Request
+                        <strong>—</strong>
+                    </div>
+
+                </div>
+
+
+                <div id="grammarErrors"
+                     class="error-area">
+                    Waiting for analysis...
+                </div>
+
+            </div>
+
+
+            <!-- PDA -->
+
+            <div class="result-card pda-card">
+
+                <div class="result-title">
+
+                    <span class="number">05</span>
+
+                    <div>
+                        <h3>PDA Analysis</h3>
+                        <p>Pushdown Automaton with Stack</p>
+                    </div>
+
+                </div>
+
+
+                <div class="pda-flow">
+
+                    <div class="pda-state">
+                        p0
+                        <small>START</small>
+                    </div>
+
+                    <span>→</span>
+
+                    <div class="pda-state">
+                        p1
+                        <small>CUSTOMER</small>
+                    </div>
+
+                    <span>→</span>
+
+                    <div class="pda-state">
+                        p2
+                        <small>PROBLEM</small>
+                    </div>
+
+                    <span>→</span>
+
+                    <div class="pda-state">
+                        p3
+                        <small>REQUEST</small>
+                    </div>
+
+                    <span>→</span>
+
+                    <div class="pda-state accept">
+                        p4
+                        <small>ACCEPT</small>
+                    </div>
+
+                </div>
+
+
+                <h4>Stack</h4>
+
+                <div id="pdaStack"
+                     class="stack">
+                    Empty
+                </div>
+
+
+                <h4>PDA Operation Log</h4>
+
+                <div id="pdaLog"
+                     class="operation-log">
+                    Waiting for analysis...
+                </div>
+
+
+                <div id="pdaStatus"
+                     class="status-box">
+                    Waiting for analysis...
+                </div>
+
+            </div>
+
+
+            <!-- PARSE TREE -->
+
+            <div class="result-card">
+
+                <div class="result-title">
+
+                    <span class="number">06</span>
+
+                    <div>
+                        <h3>Parse Tree</h3>
+                        <p>Grammar structure visualization</p>
+                    </div>
+
+                </div>
+
+
+                <div id="parseTree"
+                     class="parse-tree">
+
+                    <div class="tree-root">
+                        Complaint
+                    </div>
+
+                    <div class="tree-message">
+                        Analyze a complaint to generate the parse tree.
+                    </div>
+
+                </div>
+
+
+                <div id="parseStatus"
+                     class="status-box">
+                    Waiting for analysis...
+                </div>
+
+            </div>
+
+
+            <!-- SLM -->
+
+            <div class="result-card slm-card">
+
+                <div class="result-title">
+
+                    <span class="number">07</span>
+
+                    <div>
+                        <h3>SLM-Style Analysis</h3>
+                        <p>Lightweight language analysis</p>
+                    </div>
+
+                </div>
+
+
+                <div class="analysis-grid">
+
+                    <div class="analysis-item">
+                        <span>Complaint Category</span>
+                        <strong id="slmCategory">—</strong>
+                    </div>
+
+                    <div class="analysis-item">
+                        <span>Sentiment</span>
+                        <strong id="slmSentiment">—</strong>
+                    </div>
+
+                    <div class="analysis-item">
+                        <span>Urgency</span>
+                        <strong id="slmUrgency">—</strong>
+                    </div>
+
+                    <div class="analysis-item full">
+                        <span>Summary</span>
+                        <strong id="slmSummary">—</strong>
+                    </div>
+
+                    <div class="analysis-item full">
+                        <span>Corrected Complaint</span>
+                        <strong id="slmCorrection">—</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LLM -->
+
+            <div class="result-card llm-card">
+
+                <div class="result-title">
+
+                    <span class="number">08</span>
+
+                    <div>
+                        <h3>LLM Analysis Demo</h3>
+                        <p>Context-based complaint reasoning</p>
+                    </div>
+
+                </div>
+
+
+                <div class="analysis-grid">
+
+                    <div class="analysis-item">
+                        <span>Detected Intent</span>
+                        <strong id="llmIntent">—</strong>
+                    </div>
+
+                    <div class="analysis-item">
+                        <span>Complaint Type</span>
+                        <strong id="llmType">—</strong>
+                    </div>
+
+                    <div class="analysis-item">
+                        <span>Priority</span>
+                        <strong id="llmPriority">—</strong>
+                    </div>
+
+                    <div class="analysis-item full">
+                        <span>Detailed Understanding</span>
+                        <strong id="llmUnderstanding">—</strong>
+                    </div>
+
+                    <div class="analysis-item full">
+                        <span>Suggested Customer Response</span>
+                        <strong id="llmResponse">—</strong>
+                    </div>
+
+                    <div class="analysis-item full">
+                        <span>Recommended Resolution</span>
+                        <strong id="llmResolution">—</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="comparison">
+
+                    <h4>SLM vs LLM</h4>
+
+                    <div class="comparison-grid">
+
+                        <div>
+                            <strong>SLM</strong>
+                            <p>
+                                Lightweight analysis using predefined
+                                language patterns.
+                            </p>
+                        </div>
+
+                        <div>
+                            <strong>LLM</strong>
+                            <p>
+                                Context-based reasoning and detailed
+                                response generation.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FINAL RESULT -->
+
+            <div class="final-result">
+
+                <div class="final-icon">✓</div>
+
+                <h2>Final Analysis Result</h2>
+
+                <p id="finalMessage">
+                    Enter a complaint and click Analyze Complaint.
+                </p>
+
+
+                <div class="final-grid">
+
+                    <div>
+                        <span>Grammar</span>
+                        <strong id="finalGrammar">—</strong>
+                    </div>
+
+                    <div>
+                        <span>DFA</span>
+                        <strong id="finalDFA">—</strong>
+                    </div>
+
+                    <div>
+                        <span>PDA</span>
+                        <strong id="finalPDA">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Parse Tree</span>
+                        <strong id="finalParse">—</strong>
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="print-btn"
+                    onclick="printAnalysis()">
+                    🖨 Print Analysis
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FLA CONCEPTS ================= -->
+
+    <section id="concepts" class="section concepts-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">FORMAL LANGUAGE & AUTOMATA</span>
+
+            <h2>FLA Concepts Used</h2>
+
+            <p>
+                The project demonstrates important concepts from
+                Formal Language and Automata Theory.
+            </p>
+
+        </div>
+
+
+        <div class="concept-grid">
+
+            <div class="concept-card">
+                <div>📐</div>
+                <h3>Formal Grammar</h3>
+                <p>
+                    Defines the structure of a valid customer complaint.
+                </p>
+            </div>
+
+            <div class="concept-card">
+                <div>🔄</div>
+                <h3>DFA</h3>
+                <p>
+                    Validates the sequence of complaint components.
+                </p>
+            </div>
+
+            <div class="concept-card">
+                <div>📚</div>
+                <h3>PDA</h3>
+                <p>
+                    Uses a stack to verify the complaint structure.
+                </p>
+            </div>
+
+            <div class="concept-card">
+                <div>🌳</div>
+                <h3>Parse Tree</h3>
+                <p>
+                    Represents the syntactic structure of the complaint.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about" class="section about-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">ABOUT PROJECT</span>
+
+            <h2>About the Project</h2>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <h3>AI-Powered Customer Complaint Grammar Analyzer</h3>
+
+            <p>
+                This project combines Formal Language and Automata
+                concepts with lightweight language-analysis techniques
+                to analyze customer complaints.
+            </p>
+
+            <p>
+                The system demonstrates tokenization, formal grammar,
+                DFA, PDA, stack operations and parse-tree generation.
+                It also provides SLM-style and LLM-style complaint
+                analysis for educational purposes.
+            </p>
+
+            <div class="technology-list">
+
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Formal Grammar</span>
+                <span>DFA</span>
+                <span>PDA</span>
+                <span>Parse Tree</span>
+                <span>SLM</span>
+                <span>LLM</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <h3>AI Complaint Analyzer</h3>
+
+        <p>
+            Formal Language and Automata Project
+        </p>
+
+        <p class="footer-small">
+            Educational Demonstration • HTML • CSS • JavaScript
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
